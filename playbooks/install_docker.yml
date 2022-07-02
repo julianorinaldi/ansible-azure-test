@@ -1,0 +1,16 @@
+# Instalar docker nas máquinas
+
+- name: Playbook de instalação docker em distro debian
+  hosts: servers
+  tasks:
+  - name: Instalar Docker - Baixar pacote + install
+    become: true
+    become_method: sudo
+    ansible.builtin.shell:
+      cmd: curl https://releases.rancher.com/install-docker/19.03.sh | sh
+
+  - name: Instalar Docker - Add user 
+    become: true
+    become_method: sudo
+    ansible.builtin.shell:
+      cmd: usermod -aG docker julianorinaldi
